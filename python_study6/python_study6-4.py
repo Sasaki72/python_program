@@ -37,24 +37,24 @@ root.mainloop()
 # ①クリックされた時に実行する関数を作る
 # 例えば、「ButtonCilck」という名前の関数を作る
 
-# def ButtonCilck()
+# def ButtonClick()
 #  ・・ここに好きな処理を書く・・
 
 # ②ボタンがクリックされた時に①の関数を実行するように結びつける
 # それには、ボタンを作るときのButtonメソッドに「command=関数名」の引数を追加する
 
-# button1 = tk.Button(root, text = "チェック", font=("Helvetica", 14), command = ButtonCilck)  #実行したい関数名を書く
+# button1 = tk.Button(root, text = "チェック", font=("Helvetica", 14), command = ButtonClick)  #実行したい関数名を書く
 #クリックされた時に「ButtonCilck」という関数が実行されるようになる
 
-# button1 = tk.Button(root, text = "チェック", font=("Helvetica", 14), command = ButtonCilck) 
+# button1 = tk.Button(root, text = "チェック", font=("Helvetica", 14), command = ButtonClick) 
 #                                                                                  ↓クリック後の関数実行の指定
-#                                                                             def ButtonCilck()
+#                                                                             def ButtonClick()
 #                                                                           クリックされたときの処理を書いておく
 #上記の様に「指定した動作」と「実行するプログラム」を結びつけるプログラミング手法を「イベントドリブン(event-driven)」と言う
 #「イベント」は「動作」や「事象」のことで、「何か事象が起きた」ことを示す。ここでは代表的な「クリック」だが、他には「ダブルクリック」「右クリック」「キーの入力」「マウスが動いた」「一定時間が経過した」など様々なイベントがある
 
 #【メッセージを表示してみよう】
-# def ButtonCilck()
+# def ButtonClick()
 #  ・・ここに好きな処理を書く・・
 
 #これで、ボタンがクリックされた時に、ButtonCilck関数が実行される様になったので画面にメッセージを表示してみる
@@ -78,7 +78,7 @@ root.mainloop()
 # tmsg.showinfo("タイトル","表示したい文字")
 #そこで、ButtonCilck関数を次の様に定義する
 
-# def ButtonCilck():
+# def ButtonClick():
 #     tmsg.showinfo("テスト", "クリックされたよ")
 #これまで作成した関数に修正箇所として追加し、実行すると、ボタンをクリックした時に「テスト」というタイトルで「クリックされたよ」というメッセージが表示される
 
@@ -88,7 +88,7 @@ import tkinter as tk
 import tkinter.messagebox as tmsg               # messageboxパッケージを読み込む
 
 # ボタンがクリックされたときの処理
-def ButtonCilck():                              # クリックされた時にメッセージを表示
+def ButtonClick():                              # クリックされた時にメッセージを表示
     tmsg.showinfo("テスト", "クリックされたよ")     # クリックされた時にメッセージを表示
 
 # メインのプログラム
@@ -102,8 +102,7 @@ labell.place(x = 20, y = 20)
 editboxl = tk.Entry(width = 4, font=("Helvetica",28))                 
 editboxl.place(x = 120, y = 60)                                       
 
-button1 = tk.Button(root, text = "チェック", font=("Helvetica", 14)
-, command = ButtonCilck)                          # クリックされた時にこの関数を実行するための指定
+button1 = tk.Button(root, text = "チェック", font=("Helvetica", 14), command = ButtonClick)                          # クリックされた時にこの関数を実行するための指定
 button1.place(x = 220, y = 60)                                         
 
 root.mainloop()
