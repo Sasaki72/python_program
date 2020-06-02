@@ -1,3 +1,17 @@
+#【ヒット＆ブローの当たり判定を組み込もう】
+
+#【入力されたテキストの値を取得する】
+# はじめに知らないといけないのは、ウィンドウに配置したテキスト入力欄、つまりエントリーの部分に入力されたテキストを取得する方法
+# 入力されたテキストは、「getメソッド」を使うと取得できる。
+# ここまでのプログラムは次のテキスト入力欄を「editbox」という変数に代入してる
+
+# editboxl = tk.Entry(wildth = 4, font=("Halvetica", 28))
+# editboxl.place(x = 120, y = 60)
+# だから次のようにeditboxlに対してgetメソッドを実行すると、この入力欄に入力されたテキストを取得できる
+
+# editboxl.get()
+# 実際にテストしてみる
+
 #coding:utf-8
 import tkinter as tk
 import tkinter.messagebox as tmsg
@@ -31,3 +45,5 @@ button1.place(x = 220, y = 60)
 # ウィンドウを表示する
 root.mainloop()
 
+
+#【ヒット＆ブローの値判定を作る】
