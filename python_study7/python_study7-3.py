@@ -126,10 +126,10 @@ y = 200
 def click(event):
     global x, y
     # 今の円を消す
-    canvas.create_oval(x - 20, y - 20, x + 20, y + 20, fill = "white", width = 0)
-    x = event.x
-    y = event.y
-    canvas.create_oval(x - 20, y - 20, x + 20, y + 20, fill = "red", width = 0)
+    canvas.create_oval(x - 20, y - 20, x + 20, y + 20, fill = "white", width = 0)   # xとyは、前回クリックした座標　# 白で塗りつぶされた円を描く
+    x = event.x     # クリックされた座標を保存
+    y = event.y     # クリックされた座標を保存
+    canvas.create_oval(x - 20, y - 20, x + 20, y + 20, fill = "red", width = 0)     # 赤で塗りつぶした円を描く
 
 # ウィンドウを描く
 root = tk.Tk()
@@ -140,7 +140,7 @@ canvas =tk.Canvas(root, width =600, height =400, bg="white")
 canvas.place(x = 0, y = 0)
 
 # イベントを設定する
-canvas.bind("<Button-1>", click)
+canvas.bind("<Button-1>", click)                          # クリックされたときにclick関数を実行する
 # 「, click」＝ クリックされた時にclick関数が実行されるようにする
 
 root.mainloop()
