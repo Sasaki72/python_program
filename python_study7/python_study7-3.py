@@ -43,5 +43,104 @@
 # canvas.bind("<Button-1>", click)
 # これでクリックされた時に、click関数が実行される
 # 《MEMO》 「click」というのは今回任意でつけた名前である。もちろん関数名は好きなものでOK
+# この時、click関数は、引数としてそのイベント発生時の情報が渡される
 
-# 次回は、P191から
+# def click(event):
+# ・・・クリックされた時の処理をここに書く・・・
+# 例えば上記のように、「event」という引数として受け取る書式にしておく
+# 《MEMO》今回は「event」としてるが、任意なので他の「e」や「evt」や「a」や「abc」など何でもOK
+# 例えば「def click(e):」、として定義した場合は、X座標は「e.x」、Y座標は「e.y」として取得できる
+
+# eventには、クリックされた時の情報が渡される。具体的には、
+# ・「event」がクリックされた場所のX座標
+# ・「event」がクリックされた場所のY座標
+# これらの座標のそれぞれを示す。そこでcreate_ovalメソッドを使って、この座標に円を描画すれば、クリックされた場所に円が描画される
+
+# canvas.create_oval(event.x - 20, event.y - 20, event.x + 20, event.y + 20, fill = "red",width = 0)
+# これを使って実行するとクリックした場所に次々と円が出てくる
+
+# coding:utf-8
+import tkinter as tk
+
+def click(event):
+    # クリックされた時そのに描画する
+    canvas.create_oval(event.x - 20, event.y - 20, event.x + 20, event.y + 20, fill = "red", width = 0)
+# 「event.x」＝クリックされた「x座標」、「event.y」＝クリックされた「y座標」
+
+# ウィンドウを描く
+root = tk.Tk()
+root.geometry("600x400")
+
+# キャンバスを置く
+canvas =tk.Canvas(root, width =600, height =400, bg="white")
+canvas.place(x = 0, y = 0)
+
+# イベントを設定する
+canvas.bind("<Button-1>", click)
+# 「, click」＝ クリックされた時にclick関数が実行されるようにする
+
+root.mainloop()
+
+
+#【クリックされたところに移動する】
+# 次は、クリックされたところに円が増えるのではなく、「クリックしたところに円が移動する」ように動作を変えてみる
+# そのためには、円を描くときに「元々描かれていた円を消す」ようにする
+# 「消す」というのは分かりにくいので、「消えたように見せる」ようにプログラミングを作る
+# いくつか考えがあるが、「元々描かれていた場所で、fill = "white", width = 0 を指定して、線のない白い円を描画する」という方法が簡単
+# キャンパスの背景が白なので、そうすれば、消えたように見える
+
+# 【描画する円の位置を保存しておく】
+# 円を消すためには、「前回、どの位置に円を描画したのか」を保存しておく必要がある
+# そので、変数xと変数yに「前回、描画した位置」を保存しておく
+# 最初の値はどのような値でもいいが、ここでは仮に、キャンパスの中心となる（300,200）とする
+
+# 円の座標
+# x = 300
+# y = 200
+
+# click関数ではこの変数xと変数yを使いたいので、グローバル(global)宣言をしている
+# global x, y
+
+# click関数では、まずこの座標に「白色」で描画して元の円を消す
+# canvas.create_oval(x - 20, y - 20, x + 20, y + 20, fill = "white", width = 0)
+
+#《MEMO》初回にclick関数が実行されたときは、赤い円はまだ描かれてませんが、xに「300」、yに「200」が代入されているため、この位置に白い円が描画される
+# 白いキャンパスに白い円を描いても影響はないので、このままにしている、もしきになるなら「初回は白い円を描画しないようにする」とか「xやyの範囲をキャンパスからはみ出る場所(マイナスの値やキャンパスサイズよりも大きな座標)に指定する」などのやり方でもOK
+
+# そしてクリックされた座標(event.x、event.y)を、変数xと変数yにそれぞれ代入してから、その座標に、赤く塗られた円を描画する
+# x = event.x
+# y = event.y
+# canvas.create_oval(x - 20, y - 20, x + 20, y + 20, fill = "red", white = 0)
+
+# 変数xと変数yは「いま赤い円を描画した座標」に変わるので、次にclick関数が実行されるときは、この座標に白い円が描画される
+# つまり、「前に描いた円が消える」動作になる
+
+
+# coding:utf-8
+import tkinter as tk
+
+# 円の座標
+x = 300
+y = 200
+
+def click(event):
+    global x, y
+    # 今の円を消す
+    canvas.create_oval(x - 20, y - 20, x + 20, y + 20, fill = "white", width = 0)
+    x = event.x
+    y = event.y
+    canvas.create_oval(x - 20, y - 20, x + 20, y + 20, fill = "red", width = 0)
+
+# ウィンドウを描く
+root = tk.Tk()
+root.geometry("600x400")
+
+# キャンバスを置く
+canvas =tk.Canvas(root, width =600, height =400, bg="white")
+canvas.place(x = 0, y = 0)
+
+# イベントを設定する
+canvas.bind("<Button-1>", click)
+# 「, click」＝ クリックされた時にclick関数が実行されるようにする
+
+root.mainloop()
