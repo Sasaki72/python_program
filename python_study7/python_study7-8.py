@@ -193,7 +193,7 @@
 # coding:utf-8
 import tkinter as tk
 
-class Ball:
+class Ball:                                     # Ballクラスの定義
     def __init__(self, x, y, dx, dy, color):
         self.x = x
         self.y = y
@@ -201,7 +201,7 @@ class Ball:
         self.dy = dy
         self.color = color
 
-    def move(self, canvas):
+    def move(self, canvas):                     # 円を動かすためのメソッド
     # 今の円を消す
         canvas.create_oval(self.x - 20, self.y - 20, self.x + 20, self.y + 20, fill = "white", width = 0)
         # X座標、Y座標をを動かす
@@ -220,11 +220,11 @@ class Ball:
           self.dy = +1                               
 
 # 円をひとつ作る
-b = Ball(400, 300, 1, 1, "red")
+b = Ball(400, 300, 1, 1, "red")                  # Ballオブジェクトを作る
 
 def loop():
   # 動かす
-  b.move(canvas)
+  b.move(canvas)                                 # 「動かす」と命令するだけ
   # もう一回
   root.after(10,loop)
 
@@ -242,22 +242,26 @@ root.after(10, loop)
 root.mainloop()
 # 
 # 
+# 【たくさんの円を動かす】
+# 上記では、１つの円しか動かしていないが、これを複数にするのは、とても簡単
+# リストとしてBallオブジェクトを用意する
 # 
+# balls = [
+#     Ball(400, 300, 1, 1, "red"),
+#     Ball(200, 100, -1, 1, "green"),    ２つ加えた
+#     Ball(100, 200, 1, -1, "blue")      ２つ加えた
+# ]
+# 用意したら、これらのリストをforでループして処理するため、円を動かすloop関数を次のように修正する
 # 
+# def loop():
+#     #動かす
+#     for b in balls:           ballsから１つずつ取り出す
+#         b.move(canvas)        「動かせと命令する」
 # 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
+#     #もう一回 
+#       root.after(10, loop)
+# このようにオブジェクトをリストとして構成すれば、いくつでも好きなだけ円を描ける
+# 修正が必要なのはデータのところだけで、クラスなどのプログラムを変更する必要はない
 # 
 # 
 
