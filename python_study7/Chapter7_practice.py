@@ -1,35 +1,33 @@
 # coding:utf-8
 import tkinter as tk
 
-# 円をリストで用意する
-# X座標：Y座標：x方向の移動：y方向の移動：色
-balls = [
-    {"x" : 400, "y" : 300, "dx" : 1, "dy" : 1, "color" : "red"},
-    {"x" : 200, "y" : 100, "dx" : -1, "dy" : 1, "color" : "green"},
-    {"x" : 100, "y" : 200, "dx" : 1, "dy" : -1, "color" : "blue"}
-]
+# 円の座標と半径
+x = 400
+y = 300
+# 移動量
+dx = 1              
+dy = 1
 
 def move():
-    global balls
-    for b in balls:     # 全ての円に対してループする
-        # 今の円を消す
-        canvas.create_oval(b["x"] - 20, b["y"] - 20, b["x"] + 20, b["y"] + 20, fill = "white", width = 0)
-        # X座標を動かす
-        b["x"] = b["x"] + b["dx"]
-        # Y座標も動かす
-        b["y"] = b["y"] + b["dy"]
-        # 次の位置に円を描く
-        canvas.create_oval(b["x"] - 20, b["y"] - 20, b["x"] + 20, b["y"] + 20, fill = b["color"], width = 0)
-        # 端を超えていたら反対向きにする
-        if b["x"] >= canvas.winfo_width():
-          b["dx"] = -1
-        if b["x"] <= 0:
-          b["dx"] = +1
-        # Y座標についても同様
-        if b["y"] >= canvas.winfo_height():
-          b["dy"] = -1
-        if b["y"] <= 0:
-          b["dy"] = +1
+    global x, y, dx, dy
+    # 今の円を消す
+    canvas.create_oval(x - 20, y - 20, x + 20, y + 20, fill = "white", width = 0)
+    # X座標を動かす
+    x = x + dx
+    # Y座標も動かす
+    y = y + dy
+    # 次の位置に円を描く
+    canvas.create_oval(x - 20, y - 20, x + 20, y + 20, fill = "red", width = 0)
+    # 端を超えていたら反対向きにする
+    if x >= canvas.winfo_width():           # 右辺を越えた時
+      dx = -1                               # 左方向へ
+    if x <= 0:                              # 左辺を越えた時
+      dx = +1                               # 右方向へ
+    # Y座標についても同様
+    if y >= canvas.winfo_width():           # 下辺を越えた時
+      dy = -1                               # 上方向へ
+    if y <= 0:                              # 上辺を越えた時
+      dy = +1                               # 下方向へ
     #　再びタイマー
     root.after(10, move)
 
