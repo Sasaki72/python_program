@@ -27,10 +27,10 @@ class Ball:       #円を描くクラスーーーーーーーーーーーーー�
             self.dy = 1  #ーーーーーーーーーーーーーーーーーーーーーーーーーーー
 
     def erase(self, canvas):
-      canvas.create_oval(self.x - 20, self.y - 20, self.x + 20, self.y + 20, fill = "white", width = 0)
+        canvas.create_oval(self.x - 20, self.y - 20, self.x + 20, self.y + 20, fill = "white", width = 0)
 
     def draw(self, canvas):
-      canvas.create_oval(self.x - 20, self.y - 20, self.x + 20, self.y + 20, fill = self.color, width = 0)
+        canvas.create_oval(self.x - 20, self.y - 20, self.x + 20, self.y + 20, fill = self.color, width = 0)
 
 class Rectangle(Ball):      # 四角形を描くクラス
     def erase(self, canvas):

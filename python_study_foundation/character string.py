@@ -17,13 +17,20 @@
 # test_str = test_str + 'izm'
 # print(test_str)
 # 
-print('python-izm')
-#  
+# print('python-izm')
+
+# 「 += 」を用いることで特定の文字列への追加も可能です。
+# test_str = '012'
+# test_str += '345'
+# test_str += '678'
+# test_str += '9'
+
+# print(test_str)
+
+# 「 * 」を用いることで指定回数分繰り返すこともできます。
+# test_str = '012' * 3
 # 
-# 
-# 
-# 
-# 
+# print(test_str)
 # 
 # 
 # 
