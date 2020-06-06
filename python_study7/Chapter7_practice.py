@@ -1,55 +1,71 @@
 # coding:utf-8
 import tkinter as tk
+class Ball:       #円を描くクラスーーーーーーーーーーーーーーーーーーーーーーーー
+    def __init__(self, x, y, dx, dy, color):                         #｜
+        self.x = x                                                   #｜
+        self.y = y                                                   #｜
+        self.dx = dx                                                 #｜
+        self.dy = dy                                                 #｜  
+        self.color = color                                           #｜
+#                                                                    #｜
+    def move(self, canvas):                                          #｜
+        #いまの円を消す                                           　　  #｜ 
+        self.erase(canvas)                                           #｜
+        #X座標、Y座標を動かす                                           #｜ 
+        self.x = self.x + self.dx                            # オーバーライトしてないから、   
+        self.y = self.y + self.dy                            # この２つのメソッドはRectangleでも   
+        #次の位置に円を描画する                              　  # Triangleでも同じものが使われる
+        self.draw(canvas)                                            #｜
+        #端を超えていたら反対向きにする                                   #｜   
+        if (self.x >= canvas.winfo_width()):                         #｜
+            self.dx = -1                                             #｜ 
+        if (self.x <= 0):                                            #｜
+            self.dx = 1                                              #｜
+        if (self.y >= canvas.winfo_height()):                        #｜
+            self.dy = -1                                             #｜ 
+        if (self.y <= 0):                                            #｜
+            self.dy = 1  #ーーーーーーーーーーーーーーーーーーーーーーーーーーー
 
-class Ball:
-    def __init__(self, x, y, dx, dy, color):
-        self.x = x
-        self.y = y
-        self.dx = dx
-        self.dy = dy
-        self.color = color
+    def erase(self, canvas):
+      canvas.create_oval(self.x - 20, self.y - 20, self.x + 20, self.y + 20, fill = "white", width = 0)
 
-    def move(self, canvas):
-    # 今の円を消す
-        canvas.create_oval(self.x - 20, self.y - 20, self.x + 20, self.y + 20, fill = "white", width = 0)
-        # X座標、Y座標をを動かす
-        self.x = self.x + self.dx
-        self.y = self.y + self.dy
-        # 次の位置に円を描く
-        canvas.create_oval(self.x - 20, self.y - 20, self.x + 20, self.y + 20, fill = self.color, width = 0)
-        # 端を超えていたら反対向きにする
-        if self.x >= canvas.winfo_width():           
-          self.dx = -1                               
-        if self.x <= 0:                              
-          self.dx = +1                               
-        if self.y >= canvas.winfo_height():          
-          self.dy = -1                               
-        if self.y <= 0:                              
-          self.dy = +1                               
+    def draw(self, canvas):
+      canvas.create_oval(self.x - 20, self.y - 20, self.x + 20, self.y + 20, fill = self.color, width = 0)
 
-# 円をひとつ作る
-balls = [
+class Rectangle(Ball):      # 四角形を描くクラス
+    def erase(self, canvas):
+        canvas.create_rectangle(self.x - 20, self.y - 20, self.x + 20, self.y + 20, fill = "white", width = 0)
+    def draw(self, canvas):
+        canvas.create_rectangle(self.x - 20, self.y - 20, self.x + 20, self.y + 20, fill = self.color, width = 0)
+
+class Triangle(Ball):       # 三角形を描くクラス
+    def erase(self, canvas):
+        canvas.create_polygon(self.x, self.y - 20, self.x + 20, self.y + 20, self.x - 20, self.y + 20, fill = "white", width = 0)
+    def draw(self, canvas):
+        canvas.create_polygon(self.x, self.y - 20, self.x + 20, self.y + 20, self.x - 20, self.y + 20, fill = self.color, width = 0)
+
+# 円、四角形、三角形をまとめて用意する
+balls =[
     Ball(400, 300, 1, 1, "red"),
-    Ball(200, 100, -1, 1, "green"),    #２つ加えた
-    Ball(100, 200, 1, -1, "blue")      #２つ加えた
+    Rectangle(200, 100, -1, 1, "green"),
+    Triangle(100, 200, 1, -1, "blue")
 ]
-
 def loop():
-  # 動かす
-  for b in balls:
-      b.move(canvas)
-  # もう一回
-  root.after(10,loop)
+    #動かす
+    for b in balls:
+        b.move(canvas)
+    #もう1回
+    root.after(10, loop)
 
 # ウィンドウを描く
 root = tk.Tk()
 root.geometry("800x600")
 
-# キャンバスを置く
-canvas =tk.Canvas(root, width = 800, height = 600, bg = "white")
+# Canvasを置く
+canvas =tk.Canvas(root, width = 800, height = 600, bg = "#fff")
 canvas.place(x = 0, y = 0)
 
-# タイマーをセット
-root.after(10, loop) 
+#タイマーをセット
+root.after(10, loop)
 
 root.mainloop()

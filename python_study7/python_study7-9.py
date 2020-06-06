@@ -102,45 +102,123 @@
 # ３点の座標を指定することで、三角形を描画できる
 # 先の四角形と同様に、eraseメソッドとdrawメソッドをオーバーライトすればよく、次のようにして作れる
 # 
-# p227から
+# class Triangle(Ball):
+#     def erase(self, canvas):    # 三角形を消す
+#         canvas.create_oval(self.x - 20, self.y - 20, self.x + 20, self.y + 20, fill = "white", width = 0)
+# 
+#     def draw(self, canvas):     # 三角形を描く
+#         canvas.create_oval(self.x - 20, self.y - 20, self.x + 20, self.y + 20, fill = self.color, width = 0)
+# 
+# 【三角形を描画する】
+# このTriangleクラスを使って三角形を描画する場合は、次のようになる
+
+# b = Triangle(400, 300, 1, 1, "erd")
+# 
+# def loop():
+#   動かす
+#   b.move(canvas)
+#   もう一回
+#   root.after(10, loop)
+# 
+# 違いは以下の1桁だけ
+# b = Triangle(400, 300, 1, 1, "red")
 # 
 # 
+#【混ぜて描く】
+# ここまで「円(Ball)」「四角形(Rectangle)」「三角形(Triangle)」の３つのクラスを使い、それぞれ描画する方法を説明してきた
+# これらを混ぜて描画するには、どうすればいいか？
+# このプログラムではまず、次のようにして一緒に「円」「四角形」「三角形」を作り。それをリストとして構成する
+# balls =[
+#     Ball(400, 300, 1, 1, "red"),
+#     Rectangle(200, 100, -1, 1, "green"),
+#     Triangle(100, 200, 1, -1, "blue")
+# ]
+# 
+# そしてこのballs変数をループ処理することで描画していく
+# for b in balls:
+#     b.move(canvas)
+# 
+# ここでのポイントとなるのが、どのクラスもBallクラスから継承していて、すべて「moveメソッド」を持っているという点
+# このループで実行しているのは、そのオブジェクトの「moveメソッド」です。それが「円(Ballオブジェクト)」「四角形(Rectangleオブジェクト)」「三角形(Triangleオブジェクト)」のどれかであるかは関係ない
+# どのオブジェクトかに関係なく、ただ「moveメソッドさえあれば、同じようにループ処理ができる」のである
 # 
 # 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-#
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
+# coding:utf-8
+import tkinter as tk
+class Ball:       #円を描くクラスーーーーーーーーーーーーーーーーーーーーーーーー
+    def __init__(self, x, y, dx, dy, color):                         #｜
+        self.x = x                                                   #｜
+        self.y = y                                                   #｜
+        self.dx = dx                                                 #｜
+        self.dy = dy                                                 #｜  
+        self.color = color                                           #｜
+#                                                                    #｜
+    def move(self, canvas):                                          #｜
+        #いまの円を消す                                           　　  #｜ 
+        self.erase(canvas)                                           #｜
+        #X座標、Y座標を動かす                                           #｜ 
+        self.x = self.x + self.dx                            # オーバーライトしてないから、   
+        self.y = self.y + self.dy                            # この２つのメソッドはRectangleでも   
+        #次の位置に円を描画する                              　  # Triangleでも同じものが使われる
+        self.draw(canvas)                                            #｜
+        #端を超えていたら反対向きにする                                   #｜   
+        if (self.x >= canvas.winfo_width()):                         #｜
+            self.dx = -1                                             #｜ 
+        if (self.x <= 0):                                            #｜
+            self.dx = 1                                              #｜
+        if (self.y >= canvas.winfo_height()):                        #｜
+            self.dy = -1                                             #｜ 
+        if (self.y <= 0):                                            #｜
+            self.dy = 1  #ーーーーーーーーーーーーーーーーーーーーーーーーーーー
+
+    def erase(self, canvas):
+      canvas.create_oval(self.x - 20, self.y - 20, self.x + 20, self.y + 20, fill = "white", width = 0)
+
+    def draw(self, canvas):
+      canvas.create_oval(self.x - 20, self.y - 20, self.x + 20, self.y + 20, fill = self.color, width = 0)
+
+class Rectangle(Ball):      # 四角形を描くクラス
+    def erase(self, canvas):
+        canvas.create_rectangle(self.x - 20, self.y - 20, self.x + 20, self.y + 20, fill = "white", width = 0)
+    def draw(self, canvas):
+        canvas.create_rectangle(self.x - 20, self.y - 20, self.x + 20, self.y + 20, fill = self.color, width = 0)
+
+class Triangle(Ball):       # 三角形を描くクラス
+    def erase(self, canvas):
+        canvas.create_polygon(self.x, self.y - 20, self.x + 20, self.y + 20, self.x - 20, self.y + 20, fill = "white", width = 0)
+    def draw(self, canvas):
+        canvas.create_polygon(self.x, self.y - 20, self.x + 20, self.y + 20, self.x - 20, self.y + 20, fill = self.color, width = 0)
+
+# 円、四角形、三角形をまとめて用意する
+balls =[
+    Ball(400, 300, 1, 1, "red"),
+    Rectangle(200, 100, -1, 1, "green"),
+    Triangle(100, 200, 1, -1, "blue")
+]
+def loop():
+    #動かす
+    for b in balls:
+        b.move(canvas)
+    #もう1回
+    root.after(10, loop)
+
+# ウィンドウを描く
+root = tk.Tk()
+root.geometry("800x600")
+
+# Canvasを置く
+canvas =tk.Canvas(root, width = 800, height = 600, bg = "#fff")
+canvas.place(x = 0, y = 0)
+
+#タイマーをセット
+root.after(10, loop)
+
+root.mainloop()
+
+
+# 【プログラミング】に慣れたら立ち戻る
+# クラスとオブジェクトは、難しい概念、身につけて活用するまでには時間がかかる 
+# 焦らずじっくり進める
+# クラスとオブジェクトはプログラミングの考え方や設計の問題も含むので最初はピンと来ないかも
+# 最初のうちはクラスとオブジェクトを使わず、じばらくプロブラミングを進め、改めてクラスとオブジェクトを学ぶと、
+# 「こう言う時にクラスとオブジェクトが使えそうだな」という、使い場所が見えてくる
