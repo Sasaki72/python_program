@@ -1,8 +1,7 @@
-import sys
+test_list_1 = [['https', 'www'], ['python-izm', 'com']]
 
-args = sys.argv
+for value in test_list_1:
+    print(value)
 
-print(args)
-print('第１引数：' + args[1])
-print('第２引数：' + args[2])
-print('第３引数：' + args[3])
+for value_1, value_2 in test_list_1:
+    print(value_1, value_2)
