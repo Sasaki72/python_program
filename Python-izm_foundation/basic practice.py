@@ -1,15 +1,8 @@
-print("test 2")    # この書き方も有効です
+import sys
 
-# 複数行のコメントアウトのように扱う
-'''
-print("test 3")
-print("test 4")
-'''
+args = sys.argv
 
-# ネストさせた疑似複数行コメントアウト
-'''
-print("test 5")
-"""
-print('test 6')
-"""
-'''
+print(args)
+print('第１引数：' + args[1])
+print('第２引数：' + args[2])
+print('第３引数：' + args[3])
