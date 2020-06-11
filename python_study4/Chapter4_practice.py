@@ -1,6 +1,8 @@
-# coding:utf-8
-for a in range(10):
-    if a + 1 <= 5:
-      print("小さいです")
-    else:
-      print("大きいです")
+total = 0
+a = 1
+while True:
+    total = total + a
+    a = a + 1
+    if total > 50:
+      break
+print(total)
