@@ -1,8 +1,9 @@
-total = 0
-a = 1
-while True:
-    total = total + a
-    a = a + 1
-    if total > 50:
-      break
-print(total)
+#coding:utf-8
+def tashizan(a, b):
+    total = 0
+    for i in range(a, b + 1):
+        total = total + i
+    return total
+
+c = tashizan(1, 5)
+print(c)
