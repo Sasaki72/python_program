@@ -4,7 +4,7 @@ for a in range(51):
       print("○")
     elif (a % 4 == 0):
       print("△")
-    elif if (a % 2 == 0):
+    elif (a % 2 == 0):
       print("×")
     else:
       print("☆")
