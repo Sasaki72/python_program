@@ -10,11 +10,11 @@
 # 日付の取得方法は下記の通りです。標準ライブラリであるdatetimeを使用しましょう。このように標準ライブラリやサードパーティライブラリなど、特定の機能を使用したい場合はimportを用います。
 # ※str(‘a’)やint(‘1’)など、ごく一般的なプログラムにおいても高い使用頻度が想定されている一部のものは、importを行わずに使うことができます。
 # 
-# import datetime
+# import datetime  (import = 取り寄せる、datetime = 日時)
 # 
 # 
-# today = datetime.date.today()
-# todaydetail = datetime.datetime.today()
+# today = datetime.date.today()　　　　　　　　　(date = 日にち)
+# todaydetail = datetime.datetime.today()　　　(todaydetail = 今日の詳細、)
 #  
 # # 今日の日付
 # print('----------------------------------')

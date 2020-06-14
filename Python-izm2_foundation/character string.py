@@ -80,7 +80,7 @@
 
 
 # 【文字列の置換】
-# 文字列の置換はreplaceを使用します。
+# 文字列の置換は replace(替える) を使用します。
 # 
 # test_str = 'python-izm'
 #
