@@ -23,13 +23,19 @@
 
 # print(test_set_1)
 
-value = 4
+# test_list_1 = [['https', 'www'], ['python-izm', 'com']]
 
-if value == 1:
-    print('valueの値は1です')
-elif value == 2:
-    print('valueの値は2です')
-elif value == 3:
-    print('valueの値は3です')
-else:
-    print('ありません')
+# for value in test_list_1:
+#     print(value)
+
+# for value_1, value_2 in test_list_1:
+#     print(value_1, value_2)
+
+test_list_1 = [['https', 'www'], ['python-izm', 'com'], ['python', 'c']]
+
+for value in test_list_1:
+    print(value)
+
+for value_1, value_2, value_3 in test_list_1:
+    print(value_1, value_2, value_3)
+    
