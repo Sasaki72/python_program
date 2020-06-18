@@ -1,3 +1,4 @@
+# https://www.javadrive.jp/python/
 # 【組み込み関数の使い方】
 
 # print関数の使い方(文字列を出力する)

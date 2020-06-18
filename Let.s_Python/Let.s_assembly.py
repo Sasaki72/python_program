@@ -1,3 +1,4 @@
+# https://www.javadrive.jp/python/
 # 【集合】
 
 # 集合を作成する

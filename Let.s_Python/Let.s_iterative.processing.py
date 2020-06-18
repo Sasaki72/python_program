@@ -1,3 +1,4 @@
+# https://www.javadrive.jp/python/
 # 【繰り返し処理】
 
 # while文を使った繰り返し

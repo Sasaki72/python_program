@@ -1,3 +1,4 @@
+# https://www.javadrive.jp/python/
 # 【数値】
 
 # 数値リテラルを記述する

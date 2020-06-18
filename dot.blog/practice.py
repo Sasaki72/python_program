@@ -1,40 +1,41 @@
-class NameCheck:
+# # coding:utf-8
+class Car:
+    def __init__(self, color):
+        self. color = color
 
-    def __init__(self, text):
-        self.text = text
-        self.length = 0
+car1 = Car("red")
+car2 = Car("blue")
+car3 = Car("green")
 
-    def text_len(self):
-        for i in self.text:
-            self.length += 1
-        return self.length
+print(car1. color)
+print(car2. color)
+print(car3. color)
 
-    def even_or_odd(self):
-        if self.length % 2 == 0:
-            return '偶数'
-        else:
-            return '奇数'
+class MenuItem:
+    def __init__ (self):
+        print("メニューです")
 
-x1 = 'たろう'
-
-# クラス『NameCheck』をインスタンス化
-nc_ta = NameCheck(x1)
+menu_itme1 = MenuItem()
 
 
-# 変数lengthに格納されている値を呼び出す
-len1 = nc_ta.length
-print(len1)
-# 出力結果　0
+class MenuItem:
+    # __init__メソッドを定義してください
+    def __init__(self):
+        print('MenuItemクラスのインスタンスが生成されました！')
+
+    def info(self):
+        return self.name + ': ¥' + str(self.price)
+
+    def get_total_price(self, count):
+        total_price = self.price * count
+        return total_price
 
 
-# 文字数を測る関数text_lenを実行
-y1 = nc_ta.text_len()
-print(y1)
+menu_item1 = MenuItem()
+menu_item1.name = 'サンドイッチ'
+menu_item1.price = 500
 
-# 偶数か奇数かを判定する関数even_or_oddを実行
-y2 = nc_ta.even_or_odd()
-print(y2)
+print(menu_item1.info())
 
-# 出力結果
-# 3 # print(y1)
-# 奇数 # print(y2)
+result = menu_item1.get_total_price(1000)
+print('合計は' + str(result) + '円です')

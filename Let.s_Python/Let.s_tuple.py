@@ -1,3 +1,4 @@
+# https://www.javadrive.jp/python/
 # 【タプル】
 
 # タプルを作成する

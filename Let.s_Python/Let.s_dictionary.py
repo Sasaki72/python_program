@@ -1,3 +1,4 @@
+# https://www.javadrive.jp/python/
 # 【辞書】
 
 # 辞書を作成する

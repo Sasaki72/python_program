@@ -1,3 +1,4 @@
+# https://www.javadrive.jp/python/
 # 【リスト】
 
 # リストを作成する

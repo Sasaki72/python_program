@@ -1,3 +1,4 @@
+# https://www.javadrive.jp/python/
 # 【変数の使い方】
 
 # Pythonにおける変数とは

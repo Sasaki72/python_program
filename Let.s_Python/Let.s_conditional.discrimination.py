@@ -1,3 +1,4 @@
+# https://www.javadrive.jp/python/
 # 【条件分岐】
 
 # if文を使った条件分岐
