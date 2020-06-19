@@ -358,3 +358,154 @@ MenuItemクラスのインスタンスが生成される
 【__init__メソッドを用いる】
 __init__メソッドは、他のインスタンスメソッドと同じように定義することができます。
 以下の例では、「menu_item1 = MenuItem()」でMenuItemクラスのインスタンスが生成された直後に__init__メソッドが呼び出され、その中の処理が実行されます。
+
+class MenuItem:
+ 　|ーーーーーーーーーーーーーーーーーーーー|
+ 　|  def __init__(self):        　　 |
+ 　|    print('メニューが生成されました')|
+ 　|ーーーーーーーーーーーーーーーーーーーー|
+ ・               ⬆️
+ ・               ｜インスタンスが生成されると
+ ・               ｜自動で呼び出される
+menu_item1 = MenuItem()
+             ----------
+
+《実行結果》
+メニューが生成されました
+
+
+class MenuItem:
+    # __init__メソッドを定義してください
+    def __init__(self):
+        print("MenuItemクラスのインスタンスが生成されました！")
+
+    def info(self):
+        return self.name + ': ¥' + str(self.price)
+
+    def get_total_price(self, count):
+        total_price = self.price * count
+        return total_price
+
+menu_item1 = MenuItem()
+menu_item1.name = 'サンドイッチ'
+menu_item1.price = 500
+print(menu_item1.info())
+
+result = menu_item1.get_total_price(4)
+print('合計は' + str(result) + '円です')
+
+《実行結果》
+MenuItemクラスのインスタンスが生成されました！
+サンドイッチ：¥500
+合計は2000円です
+
+
+
+【インスタンス変数に値を代入する】
+__init__メソッドはどういうときに用いるんですか？
+このメソッドを用いることで、２『インスタンスを生成する』と同時に３『インスタンス変数に値を代入する』ことができる
+１、クラスを用意する
+２、クラスからインスタンスを生成する
+３、インスタンス変数に値を代入する
+この２と３の処理を同時にできる
+
+【__init__メソッドでインスタンス変数を扱う】
+__init__メソッドの中で、インスタンス変数に値を代入してみましょう。
+インスタンスメソッドの中では、『self.変数名』でインスタンス変数を扱うことができるので、「self.変数名 = 値」でインスタンス変数に値を代入できます。
+
+class MenuItem:
+    def __init__(self):
+      self.name = 'サンドイッチ'
+#     ------------------------
+# インスタンス生成直後に'サンドイッチ'をインスタンス変数nameに代入
+
+menu_item1 = MenuItem()
+print(menu_item1.name)
+
+《実行結果》
+サンドイッチ
+
+
+class MenuItem:
+    def __init__(self):
+        # self.nameに「サンドイッチ」を代入してください
+        self.name = "サンドイッチ"
+        
+        # self.priceに「500」を代入してください
+        self.price = 500
+
+    def info(self):
+        return self.name + ': ¥' + str(self.price)
+
+    def get_total_price(self, count):
+        total_price = self.price * count
+        return total_price
+
+
+menu_item1 = MenuItem()
+# 以下の2行は削除してください
+print(menu_item1.info())
+
+result = menu_item1.get_total_price(4)
+print('合計は' + str(result) + '円です')
+
+《実行結果》
+サンドイッチ：¥500
+合計は2000円です
+
+
+
+【__init__メソッドに引数を渡そう】
+これではどのインスタンスもnameが「サンドイッチ」になってし舞うので、
+__init__メソッドに引数を渡すことで、インスタンスごとに値を変えることができるので解決できる
+これは、__init__メソッドも引数を受け取ることができるため
+
+【__init__メソッドの引数】
+__init__メソッドは通常のインスタンスメソッドと同じように、引数を受け取ることもできます。
+その際、インスタンスを生成している「クラス名()」に対して引数を渡すことで、__init__メソッドにその値を渡すことができます。
+
+
+class MenuItem:           #チョコケーキ
+#                     　⬇️ーーーーーーー｜
+  def __init__ (self, name):        #｜
+      self.name = name              #｜
+#                                    ｜
+menu_item1 = MenuItem('チョコケーキ') #｜ 
+#                 　 ーーーーーーーーーー|
+print(menu_item1.name)
+
+《実行結果》
+チョコケーキ
+
+
+class MenuItem:
+    # 引数「name」と「price」を受け取るようにしてください
+    def __init__(self, name, price):
+        # 「サンドイッチ」の代わりに引数nameの値を代入してください
+        self.name = name
+        
+        # 「500」の代わりに引数priceの値を代入してください
+        self.price = price
+
+    def info(self):
+        return self.name + ': ¥' + str(self.price)
+
+    def get_total_price(self, count):
+        total_price = self.price * count
+        return total_price
+
+
+# 引数を「サンドイッチ」と「500」としてください
+menu_item1 = MenuItem('サンドイッチ', 500)
+
+print(menu_item1.info())
+
+result = menu_item1.get_total_price(4)
+print('合計は' + str(result) + '円です')
+
+
+《実行結果》
+サンドイッチ: ¥500
+合計は2000円です
+
+
