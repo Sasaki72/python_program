@@ -1,5 +1,3 @@
-# coding:utf-8
-
 from practice2 import MenuItem
 
 menu_item1 = MenuItem("サンドイッチ", 500)
@@ -18,7 +16,13 @@ for menu_item in menu_items:
 print("--------------------")
 
 order = int(input("メニューの番号を入力してください: "))
-
 selected_menu = menu_items[order]
-
 print("選択されたメニュー: " + selected_menu.name)
+
+# コンソールから入力を受け取り、変数countに代入してください
+count = int(input("個数を入力してください(3つ以上で1割引): "))
+# get_total_priceメソッドを呼び出してください
+result = selected_menu.get_total_price(count)
+
+# 「合計は〇〇円です」となるように出力してください
+print("合計は" + str(result) + "円です")
