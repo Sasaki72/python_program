@@ -23,3 +23,8 @@ for i in range(1,10):
     a = i * int(test)
     li.append(str(a))
 print(" ".join(li))
+
+x = range(1,11)
+for i in x:
+    print(i)
+    
