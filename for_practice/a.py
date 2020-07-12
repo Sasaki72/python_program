@@ -28,3 +28,11 @@ x = range(1,11)
 for i in x:
     print(i)
     
+a = "abc"
+def test():
+    a = "def"
+    print(a)
+    return
+
+test()
+print(a)
