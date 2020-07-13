@@ -10,3 +10,6 @@ elif "cm" == test1[1]:
 elif "m" == test1[1]:
     test2 = int(test1[0]) *1000
     print(test2)
+
+a = "Next Page".split(" ")
+print(a)
