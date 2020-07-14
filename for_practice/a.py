@@ -2,37 +2,14 @@
 # 自分の得意な言語で
 # Let's チャレンジ！！
 
-a = input()
-li = []
-for i in range(int(a)):
-    b = input()
-    li.append(b)
-print("Hello " + ",".join(li) + ".")
+input_line = input()
+input_list = input_line.split()
+int_list = []
+for i in input_list:
+    int_list.append(int(i))
+if int_list[0] == int_list[1]:
+    print("eq")
+else:
+    print(max(int_list))
 
-
-a = input()
-li = []
-for i in range(int(a))
-    b = input()
-    li = append(b)
-print(a)
-
-test = input()
-li = []
-for i in range(1,10):
-    a = i * int(test)
-    li.append(str(a))
-print(" ".join(li))
-
-x = range(1,11)
-for i in x:
-    print(i)
     
-a = "abc"
-def test():
-    a = "def"
-    print(a)
-    return
-
-test()
-print(a)
