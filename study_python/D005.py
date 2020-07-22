@@ -3,8 +3,10 @@
 # Let's チャレンジ！！
 
 test = input()
-li = []
+test1 = test.split()
+li = [test1[0]]
+a = int(test1[0])
 for i in range(1,10):
-    a = i * int(test)
+    a = a + int(test1[1])
     li.append(str(a))
 print(" ".join(li))
